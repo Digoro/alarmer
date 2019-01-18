@@ -1,0 +1,12 @@
+<ion-card>
+  <ion-item>
+    <ion-icon [name]="alarm.icon" slot="start"></ion-icon>
+    <ion-label>{{alarm.label}}</ion-label>
+    <ion-badge [color]="alarm.badge.color">{{alarm.badge.count}}</ion-badge>
+    <ion-button fill="outline" slot="end">보기</ion-button>
+  </ion-item>
+
+  <ion-card-content>
+    {{alarm.content}}
+  </ion-card-content>
+</ion-card>

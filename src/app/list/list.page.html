@@ -1,0 +1,19 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Alram List</ion-card-subtitle>
+    <ion-card-title>알람 목록</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    당신의 모든 알람 설정을 관리합니다.<br>
+    알람의 내용, 주기를 자신의 습관에 맞게 변경해보세요.
+  </ion-card-content>
+</ion-card>
+
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let alarm of alarms">
+      <alarm-card [alarm]="alarm"></alarm-card>
+    </ng-container>
+  </ion-list>
+</ion-content>
