@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'main',
@@ -8,11 +9,15 @@ import { AlertController } from '@ionic/angular';
 })
 export class MainPage implements OnInit {
   constructor(
-    public alert: AlertController
+    private alert: AlertController,
+    private localNotifications: LocalNotifications
   ) { }
 
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
+    this.localNotifications.schedule({
+      id: 1,
+      text: 'Single ILocalNotification'
+    })
   }
 
   async showUntilMsg() {

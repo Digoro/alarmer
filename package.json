@@ -15,17 +15,21 @@
   "dependencies": {
     "@angular/common": "~7.1.4",
     "@angular/core": "~7.1.4",
+    "@angular/fire": "^5.1.1",
     "@angular/forms": "~7.1.4",
     "@angular/http": "~7.1.4",
     "@angular/platform-browser": "~7.1.4",
     "@angular/platform-browser-dynamic": "~7.1.4",
     "@angular/router": "~7.1.4",
     "@ionic-native/core": "5.0.0-beta.21",
+    "@ionic-native/local-notifications": "^5.0.0-beta.23",
     "@ionic-native/splash-screen": "5.0.0-beta.21",
     "@ionic-native/status-bar": "5.0.0-beta.21",
     "@ionic/angular": "4.0.0-rc.1",
     "@ionic/pro": "2.0.4",
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
     "core-js": "^2.5.4",
+    "firebase": "^5.8.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
@@ -55,5 +59,10 @@
     "tslint": "~5.12.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-local-notification": {}
+    }
+  }
 }

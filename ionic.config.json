@@ -1,6 +1,8 @@
 {
   "name": "alarmer",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "e3afd327"
 }
