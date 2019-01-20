@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Badge, Alarm } from '../model/badge';
+import { Badge, Alarm } from '../model/alarm';
 import { AlarmService } from '../service/alarm.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
@@ -19,10 +19,10 @@ export class ListPage implements OnInit {
   ngOnInit(): void {
     this.alarmService.getAlarms().subscribe(querySnapshot => {
       querySnapshot.forEach(document => {
-        const data = document.data();
+        const data = document.data() as Alarm;
         const id = document.id;
         this.alarmService.alarmsCollection.doc(id).collection<Badge>('badge').valueChanges().subscribe(badge => {
-          this.alarms.push(new Alarm(data.icon, data.label, badge[0], data.content))
+          this.alarms.push(new Alarm(data.icon, data.title, badge[0], data.desc))
         })
       })
     })

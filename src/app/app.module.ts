@@ -12,11 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   entryComponents: [],
   imports: [
@@ -25,8 +25,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-
+    AngularFirestoreModule
   ],
   providers: [
     StatusBar,

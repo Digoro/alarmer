@@ -1,10 +1,10 @@
 
 export class Alarm {
     constructor(
-        public icon: string,
-        public label: string,
+        public icon: string = 'water',
+        public title: string,
         public badge: Badge,
-        public content: string,
+        public desc: string
     ) { }
 }
 

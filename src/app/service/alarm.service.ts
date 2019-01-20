@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentChangeAction, AngularFirestoreCollection, QuerySnapshot } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { Alarm, Badge } from '../model/badge';
+import { Alarm, Badge } from '../model/alarm';
 import { map, tap } from 'rxjs/operators'
 
 @Injectable({
@@ -16,5 +16,9 @@ export class AlarmService {
 
   getAlarms(): Observable<firebase.firestore.QuerySnapshot> {
     return this.alarmsCollection.get();
+  }
+
+  addAlarm(alarm: Alarm) {
+    return this.alarmsCollection.add(alarm);
   }
 }

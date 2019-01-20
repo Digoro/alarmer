@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Alarm } from '../model/badge';
+import { Alarm } from '../model/alarm';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'alarm-card',
@@ -8,9 +9,15 @@ import { Alarm } from '../model/badge';
 })
 export class AlarmCardComponent implements OnInit {
   @Input() alarm: Alarm;
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  editAlarm() {
+    // this.router.navigate(['./edit/', ])
   }
 
 }
