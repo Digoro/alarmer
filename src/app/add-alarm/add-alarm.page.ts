@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlarmService } from '../service/alarm.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Alarm } from '../model/alarm';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'add-alarm',
@@ -16,7 +18,8 @@ export class AddAlarmPage implements OnInit {
   constructor(
     private alarmService: AlarmService,
     private router: Router,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -28,10 +31,13 @@ export class AddAlarmPage implements OnInit {
   }
 
   submit() {
-    const value = this.formGroup.value;
-    this.alarmService.addAlarm(value);
-    this.formGroup.reset();
-    this.confirm();
+    let value: Alarm = this.formGroup.value;
+    this.authService.user$.subscribe(user => {
+      value.userMail = user.email;
+      this.alarmService.addAlarm(value);
+      this.formGroup.reset();
+      this.confirm();
+    });
   }
 
   async confirm() {

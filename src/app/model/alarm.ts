@@ -1,6 +1,7 @@
 
 export class Alarm {
     constructor(
+        public userMail: string,
         public icon: string = 'water',
         public title: string,
         public badge: Badge,
