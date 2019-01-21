@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddAlarmComponent } from './add-alarm.component';
+import { AddAlarmPage } from './add-alarm.page';
 
-describe('AddAlarmComponent', () => {
-  let component: AddAlarmComponent;
-  let fixture: ComponentFixture<AddAlarmComponent>;
+describe('AddAlarmPage', () => {
+  let component: AddAlarmPage;
+  let fixture: ComponentFixture<AddAlarmPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddAlarmComponent ]
+      declarations: [AddAlarmPage]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddAlarmComponent);
+    fixture = TestBed.createComponent(AddAlarmPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

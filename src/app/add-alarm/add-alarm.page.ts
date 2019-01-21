@@ -6,10 +6,10 @@ import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'add-alarm',
-  templateUrl: './add-alarm.component.html',
-  styleUrls: ['./add-alarm.component.scss']
+  templateUrl: './add-alarm.page.html',
+  styleUrls: ['./add-alarm.page.scss']
 })
-export class AddAlarmComponent implements OnInit {
+export class AddAlarmPage implements OnInit {
   formGroup: FormGroup;
   validators = Validators.compose([Validators.required, Validators.maxLength(50)])
 

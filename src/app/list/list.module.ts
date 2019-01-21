@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ListPage } from './list.page';
-import { AlarmCardComponent } from '../alarm-card/alarm-card.component';
+import { AlarmCardComponent } from '../components/alarm-card/alarm-card.component';
 
 @NgModule({
   imports: [
