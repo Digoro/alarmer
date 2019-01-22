@@ -3,23 +3,26 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
 import { AuthGuard } from '../service/guard/auth-guard';
+import { MainPage } from '../main/main.page';
+import { ListPage } from '../list/list.page';
+import { AddAlarmPage } from '../add-alarm/add-alarm.page';
 
 const routes: Routes = [
   {
     path: '', component: TabsPage, children: [
       {
         path: 'main', children: [
-          { path: '', loadChildren: '../main/main.module#MainPageModule' }
+          { path: '', component: MainPage }
         ]
       },
       {
         path: 'list', canActivateChild: [AuthGuard], children: [
-          { path: '', loadChildren: '../list/list.module#ListPageModule' }
+          { path: '', component: ListPage }
         ]
       },
       {
         path: 'add', canActivateChild: [AuthGuard], children: [
-          { path: '', loadChildren: '../add-alarm/add-alarm.module#AddAlarmModule' }
+          { path: '', component: AddAlarmPage }
         ]
       },
       { path: '**', redirectTo: '/tabs/main', pathMatch: 'full' }
