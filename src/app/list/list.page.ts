@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Badge, Alarm } from '../model/alarm';
 import { AlarmService } from '../service/alarm.service';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter, tap } from 'rxjs/operators'
+
 @Component({
   selector: 'list',
   templateUrl: 'list.page.html',
@@ -12,14 +11,11 @@ export class ListPage implements OnInit {
   alarms: Alarm[] = [];
 
   constructor(
-    private alarmService: AlarmService,
-    private router: Router
+    private alarmService: AlarmService
   ) { }
 
   ngOnInit(): void {
     this.getAlarms();
-    this.router.events.pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe(() => this.getAlarms());
   }
 
   getAlarms() {
