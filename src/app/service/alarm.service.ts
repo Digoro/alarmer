@@ -3,6 +3,7 @@ import { AngularFirestore, DocumentChangeAction, AngularFirestoreCollection, Que
 import { Observable, of } from 'rxjs';
 import { Alarm, Badge } from '../model/alarm';
 import { map, tap } from 'rxjs/operators'
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,9 @@ export class AlarmService {
 
   addAlarm(alarm: Alarm) {
     return this.alarmsCollection.add(alarm);
+  }
+
+  deleteAlarm(id: string) {
+    return this.alarmsCollection.doc(id).delete();
   }
 }

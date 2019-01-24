@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Alarm } from '../../model/alarm';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'alarm-card',
@@ -9,15 +8,13 @@ import { Router } from '@angular/router';
 })
 export class AlarmCardComponent implements OnInit {
   @Input() alarm: Alarm;
-  constructor(
-    private router: Router
-  ) { }
+  @Output() event = new EventEmitter();
+  constructor() { }
 
   ngOnInit() {
   }
 
-  editAlarm() {
-    // this.router.navigate(['./edit/', ])
+  deleteAlarm(id: string) {
+    this.event.emit(id)
   }
-
 }

@@ -3,7 +3,7 @@
     <ion-icon [name]="alarm.icon" slot="start"></ion-icon>
     <ion-label>{{alarm.title}}</ion-label>
     <!-- <ion-badge [color]="alarm.badge.color">{{alarm.badge.count}}</ion-badge> -->
-    <ion-button fill="outline" slot="end" (onclick)="editAlarm()">상세</ion-button>
+    <ion-button fill="outline" slot="end" (click)="deleteAlarm(alarm.id)">삭제</ion-button>
   </ion-item>
 
   <ion-card-content>

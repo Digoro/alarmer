@@ -13,7 +13,7 @@
 <ion-content>
   <ion-list>
     <ng-container *ngFor="let alarm of alarms">
-      <alarm-card [alarm]="alarm"></alarm-card>
+      <alarm-card [alarm]="alarm" (event)="eventHandler($event)"></alarm-card>
     </ng-container>
   </ion-list>
 </ion-content>
