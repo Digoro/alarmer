@@ -16,7 +16,9 @@ export class ListPage implements OnInit {
     private alertCtrl: AlertController
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  ionViewWillEnter() {
     this.getAlarms();
   }
 
