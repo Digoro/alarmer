@@ -7,6 +7,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
   styleUrls: ['main.page.scss']
 })
 export class MainPage implements OnInit {
+  policyUrl: string = "https://frontend-developers.tistory.com/1";
+
   constructor(
     private localNotifications: LocalNotifications
   ) { }
