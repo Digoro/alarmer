@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlarmService } from '../service/alarm.service';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { Alarm } from '../model/alarm';
 import { AuthService } from '../service/auth.service';
+import { AlertButton, Alert } from '../model/alert';
+import { AlertService } from '../service/alert.service';
 
 @Component({
   selector: 'add-alarm',
@@ -18,7 +19,7 @@ export class AddAlarmPage implements OnInit {
   constructor(
     private alarmService: AlarmService,
     private router: Router,
-    private alertCtrl: AlertController,
+    private alertService: AlertService,
     private authService: AuthService
   ) { }
 
@@ -36,20 +37,9 @@ export class AddAlarmPage implements OnInit {
       value.userMail = user.email;
       this.alarmService.addAlarm(value);
       this.formGroup.reset();
-      this.confirm();
+      const alert = new Alert('알람 등록!', '새로운 알람이 등록되었습니다.', [new AlertButton('확인', () => { this.router.navigate(['tabs/list']) })])
+      this.alertService.setAlert(alert);
     });
   }
 
-  async confirm() {
-    const alert = await this.alertCtrl.create({
-      header: '알람 등록!',
-      message: '새로운 알람이 등록되었습니다.',
-      buttons: [{
-        text: '확인', handler: () => {
-          this.router.navigate(['tabs/list']);
-        }
-      }]
-    });
-    return await alert.present();
-  }
 }

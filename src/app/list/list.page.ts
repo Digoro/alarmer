@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Badge, Alarm } from '../model/alarm';
 import { AlarmService } from '../service/alarm.service';
-import { AlertController } from '@ionic/angular';
+import { AlertService } from '../service/alert.service';
+import { Alert, AlertButton } from '../model/alert';
 
 @Component({
   selector: 'list',
@@ -13,7 +14,7 @@ export class ListPage implements OnInit {
 
   constructor(
     private alarmService: AlarmService,
-    private alertCtrl: AlertController
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void { }
@@ -35,21 +36,9 @@ export class ListPage implements OnInit {
     });
   }
 
-  eventHandler(id) {
+  eventHandler(id: string) {
     this.alarmService.deleteAlarm(id);
-    this.confirm();
-  }
-
-  async confirm() {
-    const alert = await this.alertCtrl.create({
-      header: '알람 삭제!',
-      message: '알람이 삭제되었습니다.',
-      buttons: [{
-        text: '확인', handler: () => {
-          this.getAlarms();
-        }
-      }]
-    });
-    return await alert.present();
+    const alert = new Alert('알람 삭제', '알람이 삭제되었습니다', [new AlertButton('확인', () => { this.getAlarms() })])
+    this.alertService.setAlert(alert);
   }
 }

@@ -6,6 +6,8 @@ import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
+import { AlertService } from '../alert.service';
+import { Alert, AlertButton } from 'src/app/model/alert';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ import { map } from 'rxjs/operators';
 export class AuthGuard implements CanActivateChild {
   constructor(
     private authService: AuthService,
-    private alertCtrl: AlertController,
+    private alertService: AlertService,
     private router: Router
   ) { }
 
@@ -30,13 +32,8 @@ export class AuthGuard implements CanActivateChild {
   }
 
   async showAuthErr() {
-    const alert = await this.alertCtrl.create({
-      header: '로그인 해주세요',
-      message: '알라머 서비스를 이용하려면 로그인이 필요합니다.',
-      buttons: [
-        { text: '확인', handler: () => this.router.navigate(['tabs/main']) }
-      ]
-    });
-    return await alert.present();
+    const alert = new Alert('로그인 해주세요', '알라머 서비스를 이용하려면 로그인이 필요합니다.',
+      [new AlertButton('확인', () => { this.router.navigate(['tabs/main']) })])
+    this.alertService.setAlert(alert);
   }
 }
