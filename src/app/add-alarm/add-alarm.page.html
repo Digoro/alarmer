@@ -19,11 +19,10 @@
         </ion-item>
 
         <ion-item>
-          <ion-label position="stacked" color="{{ formGroup.controls['frequency'].errors && formGroup.controls['frequency'].dirty ? 'danger' : 'primary' }}">주기</ion-label>
-          <ion-input formControlName="frequency"></ion-input>
+          <ion-label position="stacked" color="primary">주기</ion-label>
+          <cron-editor [(cron)]="cronExpression" [disabled]="isCronDisabled" [(options)]="cronOptions"></cron-editor>
         </ion-item>
         <ion-button [disabled]="formGroup.invalid" type="submit">등록</ion-button>
-
       </ion-list>
     </form>
   </ion-content>

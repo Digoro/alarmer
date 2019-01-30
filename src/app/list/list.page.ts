@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Badge, Alarm } from '../model/alarm';
+import { Alarm } from '../model/alarm';
 import { AlarmService } from '../service/alarm.service';
 import { AlertService } from '../service/alert.service';
 import { Alert, AlertButton } from '../model/alert';
@@ -32,9 +32,7 @@ export class ListPage implements OnInit {
       querySnapshot.forEach(document => {
         const data = document.data() as Alarm;
         const id = document.id;
-        this.alarmService.alarmsCollection.doc(id).collection<Badge>('badge').valueChanges().subscribe(badge => {
-          this.alarms.push(new Alarm(id, data.userMail, data.icon, data.title, badge[0], data.desc));
-        });
+        this.alarms.push(new Alarm(id, data.userMail, data.icon, data.title, data.desc, data.frequency));
       });
     });
   }

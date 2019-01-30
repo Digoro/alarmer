@@ -9,6 +9,7 @@ import { AddAlarmPage } from '../add-alarm/add-alarm.page';
 import { MainPage } from '../main/main.page';
 import { AlarmCardComponent } from '../components/alarm-card/alarm-card.component';
 import { LoginComponent } from '../components/login/login.component';
+import { CronEditorModule } from 'ngx-cron-editor';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { LoginComponent } from '../components/login/login.component';
     IonicModule,
     CommonModule,
     FormsModule,
-    TabsPageRoutingModule
+    TabsPageRoutingModule,
+    CronEditorModule
   ],
   declarations: [
     TabsPage,

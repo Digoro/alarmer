@@ -6,6 +6,7 @@ import { Alarm } from '../model/alarm';
 import { AuthService } from '../service/auth.service';
 import { AlertButton, Alert } from '../model/alert';
 import { AlertService } from '../service/alert.service';
+import { CronOptions } from 'cron-editor';
 
 @Component({
   selector: 'add-alarm',
@@ -15,6 +16,30 @@ import { AlertService } from '../service/alert.service';
 export class AddAlarmPage implements OnInit {
   formGroup: FormGroup;
   validators = Validators.compose([Validators.required, Validators.maxLength(50)])
+
+  public cronExpression = '4 3 2 12 1/1 ? *';
+  public isCronDisabled = false;
+  public cronOptions: CronOptions = {
+    formInputClass: 'form-control cron-editor-input',
+    formSelectClass: 'form-control cron-editor-select',
+    formRadioClass: 'cron-editor-radio',
+    formCheckboxClass: 'cron-editor-checkbox',
+
+    defaultTime: '10:00:00',
+    use24HourTime: true,
+
+    hideMinutesTab: false,
+    hideHourlyTab: false,
+    hideDailyTab: false,
+    hideWeeklyTab: false,
+    hideMonthlyTab: false,
+    hideYearlyTab: false,
+    hideAdvancedTab: false,
+
+    hideSeconds: false,
+    removeSeconds: false,
+    removeYears: false
+  };
 
   constructor(
     private alarmService: AlarmService,
@@ -26,14 +51,14 @@ export class AddAlarmPage implements OnInit {
   ngOnInit() {
     this.formGroup = new FormGroup({
       title: new FormControl('', this.validators),
-      desc: new FormControl('', this.validators),
-      frequency: new FormControl('', this.validators)
+      desc: new FormControl('', this.validators)
     })
   }
 
   submit() {
     let value: Alarm = this.formGroup.value;
     this.authService.user$.subscribe(user => {
+      value.frequency = this.cronExpression;
       value.userMail = user.email;
       this.alarmService.addAlarm(value);
       this.formGroup.reset();

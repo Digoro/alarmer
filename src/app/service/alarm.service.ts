@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentChangeAction, AngularFirestoreCollection, QuerySnapshot } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { Alarm, Badge } from '../model/alarm';
-import { map, tap } from 'rxjs/operators'
-import { firestore } from 'firebase';
+import { Alarm } from '../model/alarm';
 
 @Injectable({
   providedIn: 'root'
