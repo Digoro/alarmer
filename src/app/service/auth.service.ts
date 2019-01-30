@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   user$: Observable<firebase.User>;
-
+  user: firebase.User;
   constructor(
     private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
@@ -20,9 +20,12 @@ export class AuthService {
     private router: Router
   ) {
     this.user$ = this.afAuth.authState;
-  }
-
-  ngOnInit() {
+    this.user = afAuth.auth.currentUser;
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.user = user
+      };
+    });
   }
 
   googleLogin() {

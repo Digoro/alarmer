@@ -3,6 +3,7 @@ import { Badge, Alarm } from '../model/alarm';
 import { AlarmService } from '../service/alarm.service';
 import { AlertService } from '../service/alert.service';
 import { Alert, AlertButton } from '../model/alert';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'list',
@@ -14,7 +15,8 @@ export class ListPage implements OnInit {
 
   constructor(
     private alarmService: AlarmService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void { }
@@ -25,7 +27,8 @@ export class ListPage implements OnInit {
 
   private getAlarms() {
     this.alarms = [];
-    this.alarmService.getAlarms().subscribe(querySnapshot => {
+    const userMail = this.authService.user.email;
+    this.alarmService.getAlarms(userMail).subscribe(querySnapshot => {
       querySnapshot.forEach(document => {
         const data = document.data() as Alarm;
         const id = document.id;

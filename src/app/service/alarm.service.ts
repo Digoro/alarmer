@@ -15,8 +15,8 @@ export class AlarmService {
     this.alarmsCollection = this.afs.collection<Alarm>('alarms');
   }
 
-  getAlarms(): Observable<firebase.firestore.QuerySnapshot> {
-    return this.alarmsCollection.get();
+  getAlarms(userMail: string): Observable<firebase.firestore.QuerySnapshot> {
+    return this.afs.collection<Alarm>('alarms', ref => ref.where('userMail', '==', userMail)).get()
   }
 
   addAlarm(alarm: Alarm) {
