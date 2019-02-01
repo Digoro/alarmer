@@ -57,14 +57,11 @@ export class AddAlarmPage implements OnInit {
 
   submit() {
     let value: Alarm = this.formGroup.value;
-    this.authService.user$.subscribe(user => {
-      value.frequency = this.cronExpression;
-      value.userMail = user.email;
-      this.alarmService.addAlarm(value);
-      this.formGroup.reset();
-      const alert = new Alert('알람 등록!', '새로운 알람이 등록되었습니다.', [new AlertButton('확인', () => { this.router.navigate(['tabs/list']) })])
-      this.alertService.setAlert(alert);
-    });
+    value.frequency = this.cronExpression;
+    value.userMail = this.authService.user.email;
+    this.alarmService.addAlarm(value);
+    this.formGroup.reset();
+    const alert = new Alert('알람 등록!', '새로운 알람이 등록되었습니다.', [new AlertButton('확인', () => { this.router.navigate(['tabs/list']) })])
+    this.alertService.setAlert(alert);
   }
-
 }
