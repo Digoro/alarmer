@@ -4,10 +4,8 @@ import { Injectable } from '@angular/core';
 import { CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
-import { AlertController } from '@ionic/angular';
 import { map } from 'rxjs/operators';
-import { AlertService } from '../alert.service';
-import { Alert, AlertButton } from 'src/app/model/alert';
+import { ToastService } from '../toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +13,7 @@ import { Alert, AlertButton } from 'src/app/model/alert';
 export class AuthGuard implements CanActivateChild {
   constructor(
     private authService: AuthService,
-    private alertService: AlertService,
+    private toastService: ToastService,
     private router: Router
   ) { }
 
@@ -32,8 +30,6 @@ export class AuthGuard implements CanActivateChild {
   }
 
   async showAuthErr() {
-    const alert = new Alert('로그인 해주세요', '알라머 서비스를 이용하려면 로그인이 필요합니다.',
-      [new AlertButton('확인', () => { this.router.navigate(['tabs/main']) })])
-    this.alertService.setAlert(alert);
+    this.toastService.presentToast('알라머 서비스를 이용하려면 로그인이 필요합니다.', 'warning')
   }
 }

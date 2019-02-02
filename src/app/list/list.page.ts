@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Alarm } from '../model/alarm';
 import { AlarmService } from '../service/alarm.service';
-import { AlertService } from '../service/alert.service';
-import { Alert, AlertButton } from '../model/alert';
 import { AuthService } from '../service/auth.service';
+import { ToastService } from '../service/toast.service';
 
 @Component({
   selector: 'list',
@@ -15,7 +14,7 @@ export class ListPage implements OnInit {
 
   constructor(
     private alarmService: AlarmService,
-    private alertService: AlertService,
+    private toastService: ToastService,
     private authService: AuthService
   ) { }
 
@@ -39,7 +38,7 @@ export class ListPage implements OnInit {
 
   eventHandler(id: string) {
     this.alarmService.deleteAlarm(id);
-    const alert = new Alert('알람 삭제', '알람이 삭제되었습니다', [new AlertButton('확인', () => { this.getAlarms() })])
-    this.alertService.setAlert(alert);
+    this.toastService.presentToast('알람이 삭제되었습니다.')
+    this.getAlarms()
   }
 }

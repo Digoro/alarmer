@@ -4,9 +4,8 @@ import { AlarmService } from '../service/alarm.service';
 import { Router } from '@angular/router';
 import { Alarm } from '../model/alarm';
 import { AuthService } from '../service/auth.service';
-import { AlertButton, Alert } from '../model/alert';
-import { AlertService } from '../service/alert.service';
 import { CronOptions } from 'cron-editor';
+import { ToastService } from '../service/toast.service';
 
 @Component({
   selector: 'add-alarm',
@@ -44,7 +43,7 @@ export class AddAlarmPage implements OnInit {
   constructor(
     private alarmService: AlarmService,
     private router: Router,
-    private alertService: AlertService,
+    private toastService: ToastService,
     private authService: AuthService
   ) { }
 
@@ -61,7 +60,7 @@ export class AddAlarmPage implements OnInit {
     value.userMail = this.authService.user.email;
     this.alarmService.addAlarm(value);
     this.formGroup.reset();
-    const alert = new Alert('알람 등록!', '새로운 알람이 등록되었습니다.', [new AlertButton('확인', () => { this.router.navigate(['tabs/list']) })])
-    this.alertService.setAlert(alert);
+    this.toastService.presentToast('새 알람이 등록되었습니다!');
+    this.router.navigate(['tabs/list'])
   }
 }
