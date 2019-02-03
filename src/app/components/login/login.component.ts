@@ -9,14 +9,12 @@ import { AuthService } from '../../service/auth.service';
 })
 export class LoginComponent implements OnInit {
   user: firebase.User;
-  err: string = "";
 
   constructor(
     private authService: AuthService,
   ) { }
 
   ngOnInit() {
-    this.err = this.authService.err;
     this.setUser();
   }
 
