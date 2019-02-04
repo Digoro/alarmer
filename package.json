@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~7.1.4",
     "@angular/platform-browser-dynamic": "~7.1.4",
     "@angular/router": "~7.1.4",
+    "@ionic-native/background-mode": "^5.0.0",
     "@ionic-native/core": "5.0.0-beta.21",
     "@ionic-native/google-plus": "^5.0.0-beta.14",
     "@ionic-native/local-notifications": "^5.0.0-beta.23",
@@ -31,6 +32,7 @@
     "bootstrap": "^4.2.1",
     "cordova-android": "7.1.4",
     "cordova-ios": "4.5.5",
+    "cordova-plugin-background-mode": "0.7.2",
     "cordova-plugin-badge": "^0.8.8",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-googleplus": "7.0.0",
@@ -44,6 +46,7 @@
     "cron-editor": "^2.0.0-beta",
     "firebase": "^5.8.0",
     "jquery": "^3.3.1",
+    "moment": "^2.24.0",
     "ngx-cron-editor": "^0.4.0",
     "popper.js": "^1.14.7",
     "rxjs": "~6.3.3",
@@ -88,7 +91,8 @@
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-background-mode": {}
     },
     "platforms": [
       "ios",

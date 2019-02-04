@@ -88,6 +88,7 @@
     </plugin>
     <allow-navigation href="http://192.168.0.4:8100" sessionid="44fbf3b8" />
     <allow-navigation href="http://192.168.0.4:8101" sessionid="5e890d1d" />
+    <plugin name="cordova-plugin-background-mode" spec="0.7.2" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.1.4" />
 </widget>

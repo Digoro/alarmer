@@ -3,6 +3,8 @@ import { Alarm } from '../model/alarm';
 import { AlarmService } from '../service/alarm.service';
 import { AuthService } from '../service/auth.service';
 import { ToastService } from '../service/toast.service';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import * as moment from 'moment';
 
 @Component({
   selector: 'list',
@@ -15,10 +17,17 @@ export class ListPage implements OnInit {
   constructor(
     private alarmService: AlarmService,
     private toastService: ToastService,
-    private authService: AuthService
+    private authService: AuthService,
+    private localNotifications: LocalNotifications
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.localNotifications.schedule({
+      text: 'Delayed ILocalNotification',
+      trigger: { at: new Date(new Date().getTime() + 30) },
+      led: 'FF0000'
+    });
+  }
 
   ionViewWillEnter() {
     this.getAlarms();
