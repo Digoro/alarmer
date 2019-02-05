@@ -23,7 +23,7 @@ export class ListPage implements OnInit {
 
   ngOnInit(): void {
     this.localNotifications.schedule({
-      text: 'Delayed ILocalNotification',
+      text: 'test local notification alarm',
       trigger: { at: new Date(new Date().getTime() + 30) },
       led: 'FF0000'
     });
