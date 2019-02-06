@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.alarmer" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
+    <name>알라머</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="lsh000124@gmail.com" href="https://medium.com/frontend-developers">SangHun Lee(digoro)</author>
     <content src="index.html" />

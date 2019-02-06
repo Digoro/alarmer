@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    LocalNotifications
+    LocalNotifications,
+    BackgroundMode
   ],
   bootstrap: [AppComponent]
 })

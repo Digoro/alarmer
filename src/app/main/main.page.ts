@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'main',
@@ -9,7 +10,14 @@ export class MainPage implements OnInit {
   policyUrl: string = "https://frontend-developers.tistory.com/1";
 
   constructor(
+    private localNotifications: LocalNotifications
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit() {
+    this.localNotifications.schedule({
+      text: 'test local notification alarm',
+      trigger: { at: new Date(new Date().getTime() + 5000) },
+      led: 'FF0000'
+    });
+  }
 }
