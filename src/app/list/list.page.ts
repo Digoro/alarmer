@@ -40,14 +40,23 @@ export class ListPage implements OnInit {
       querySnapshot.forEach(document => {
         const data = document.data() as Alarm;
         const id = document.id;
-        this.alarms.push(new Alarm(id, data.userMail, data.icon, data.title, data.desc, data.frequency));
+        this.alarms.push(new Alarm(id, data.userMail, data.icon, data.title, data.desc, data.frequency, data.enable));
       });
     });
   }
 
-  eventHandler(id: string) {
-    this.alarmService.deleteAlarm(id);
-    this.toastService.presentToast('알람이 삭제되었습니다.')
-    this.getAlarms()
+  eventHandler(event: any) {
+    switch (event.event) {
+      case 'delete': {
+        this.alarmService.deleteAlarm(event);
+        this.toastService.presentToast('알람이 삭제되었습니다.');
+        this.getAlarms();
+        break;
+      }
+      case 'enable': {
+        this.alarmService.enableAlarm(event.value.id, event.value.enable);
+        break;
+      }
+    }
   }
 }

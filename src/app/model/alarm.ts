@@ -6,6 +6,7 @@ export class Alarm {
         public icon: string = 'water',
         public title: string,
         public desc: string,
-        public frequency: string
+        public frequency: string,
+        public enable: boolean
     ) { }
 }

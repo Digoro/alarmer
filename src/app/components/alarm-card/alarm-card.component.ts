@@ -9,12 +9,22 @@ import { Alarm } from '../../model/alarm';
 export class AlarmCardComponent implements OnInit {
   @Input() alarm: Alarm;
   @Output() event = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
   deleteAlarm(id: string) {
-    this.event.emit(id)
+    this.event.emit({ event: 'delete', value: id })
+  }
+
+  changeEnable(event) {
+    this.event.emit({
+      event: 'enable', value: {
+        id: this.alarm.id,
+        enable: event.detail.checked
+      }
+    })
   }
 }

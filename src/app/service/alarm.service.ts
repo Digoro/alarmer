@@ -24,4 +24,8 @@ export class AlarmService {
   deleteAlarm(id: string) {
     return this.alarmsCollection.doc(id).delete();
   }
+
+  enableAlarm(id: string, enable: boolean) {
+    console.log(id, enable);
+  }
 }
