@@ -48,7 +48,7 @@ export class ListPage implements OnInit {
   eventHandler(event: any) {
     switch (event.event) {
       case 'delete': {
-        this.alarmService.deleteAlarm(event);
+        this.alarmService.deleteAlarm(event.value);
         this.toastService.presentToast('알람이 삭제되었습니다.');
         this.getAlarms();
         break;

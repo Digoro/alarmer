@@ -2,7 +2,7 @@
   <ion-item>
     <ion-icon [name]="alarm.icon" slot="start"></ion-icon>
     <ion-label>{{alarm.title}}</ion-label>
-    <ion-toggle color="primary" (ionChange)="changeEnable($event)"></ion-toggle>
+    <ion-toggle color="primary" [(ngModel)]="alarm.enable" (ionChange)="changeEnable($event)"></ion-toggle>
     <ion-button fill="outline" slot="end" (click)="deleteAlarm(alarm.id)">삭제</ion-button>
   </ion-item>
 

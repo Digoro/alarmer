@@ -26,6 +26,8 @@ export class AlarmService {
   }
 
   enableAlarm(id: string, enable: boolean) {
-    console.log(id, enable);
+    return this.alarmsCollection.doc(id).update({
+      enable: enable
+    })
   }
 }

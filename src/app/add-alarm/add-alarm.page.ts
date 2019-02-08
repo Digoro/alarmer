@@ -58,6 +58,7 @@ export class AddAlarmPage implements OnInit {
     let value: Alarm = this.formGroup.value;
     value.frequency = this.cronExpression;
     value.userMail = this.authService.user.email;
+    value.enable = true;
     this.alarmService.addAlarm(value);
     this.formGroup.reset();
     this.toastService.presentToast('새 알람이 등록되었습니다!');
