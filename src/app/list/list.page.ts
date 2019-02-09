@@ -3,8 +3,8 @@ import { Alarm } from '../model/alarm';
 import { AlarmService } from '../service/alarm.service';
 import { AuthService } from '../service/auth.service';
 import { ToastService } from '../service/toast.service';
+import * as cron from 'cron';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import * as moment from 'moment';
 
 @Component({
   selector: 'list',
@@ -22,11 +22,6 @@ export class ListPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.localNotifications.schedule({
-      text: 'test local notification alarm',
-      trigger: { at: new Date(new Date().getTime() + 30) },
-      led: 'FF0000'
-    });
   }
 
   ionViewWillEnter() {
@@ -34,14 +29,27 @@ export class ListPage implements OnInit {
   }
 
   private getAlarms() {
-    this.alarms = [];
+    let temp = [];
     const userMail = this.authService.user.email;
     this.alarmService.getAlarms(userMail).subscribe(querySnapshot => {
       querySnapshot.forEach(document => {
         const data = document.data() as Alarm;
         const id = document.id;
-        this.alarms.push(new Alarm(id, data.userMail, data.icon, data.title, data.desc, data.frequency, data.enable));
+        temp.push(new Alarm(id, data.userMail, data.icon, data.title, data.desc, data.frequency, data.enable));
       });
+      this.alarms = temp;
+      this.schedule(temp)
+    });
+  }
+
+  schedule(alarms: Alarm[]) {
+    alarms.forEach((alarm: Alarm) => {
+      new cron.CronJob(alarm.frequency, () => {
+        this.localNotifications.schedule({
+          text: alarm.title,
+          led: 'FF0000'
+        });
+      }, null, true);
     });
   }
 
