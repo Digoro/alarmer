@@ -11,11 +11,9 @@
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+
 <ion-fab vertical="bottom" horizontal="end">
   <ion-fab-button>
-    <ion-icon name="add"></ion-icon>
+    <ion-icon name="add" (click)="addAlarm()"></ion-icon>
   </ion-fab-button>
-  <ion-fab-list side="top">
-    <ion-fab-button (click)="addAlarm()">등록</ion-fab-button>
-  </ion-fab-list>
 </ion-fab>
