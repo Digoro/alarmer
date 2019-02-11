@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { PredefinedColors } from '@ionic/core';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ToastService {
     private toastController: ToastController
   ) { }
 
-  async presentToast(message: string, color: string = 'tertiary') {
+  async presentToast(message: string, color: PredefinedColors = 'tertiary') {
     const toast = await this.toastController.create({
       message: message,
       duration: 1700,

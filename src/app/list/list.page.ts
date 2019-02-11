@@ -5,6 +5,7 @@ import { AuthService } from '../service/auth.service';
 import { ToastService } from '../service/toast.service';
 import * as cron from 'cron';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'list',
@@ -18,7 +19,8 @@ export class ListPage implements OnInit {
     private alarmService: AlarmService,
     private toastService: ToastService,
     private authService: AuthService,
-    private localNotifications: LocalNotifications
+    private localNotifications: LocalNotifications,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class ListPage implements OnInit {
   }
 
   private getAlarms() {
-    let temp = [];
+    const temp = [];
     const userMail = this.authService.user.email;
     this.alarmService.getAlarms(userMail).subscribe(querySnapshot => {
       querySnapshot.forEach(document => {
@@ -38,7 +40,11 @@ export class ListPage implements OnInit {
         temp.push(new Alarm(id, data.userMail, data.icon, data.title, data.desc, data.frequency, data.enable));
       });
       this.alarms = temp;
-      this.schedule(temp)
+      if (this.alarms.length == 0) {
+        this.toastService.presentToast('알람이 없습니다. 등록해주세요.', 'warning')
+        this.router.navigate(['tabs/add']);
+      }
+      this.schedule(temp);
     });
   }
 
