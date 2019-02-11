@@ -21,10 +21,9 @@ export class AlarmCardComponent implements OnInit {
   }
 
   deleteAlarm(id: string) {
-    const btn = new AlertButton('확인', () => {
-      this.event.emit({ event: 'delete', value: id });
-    });
-    const alert = new Alert('삭제 확인', '정말로 알람을 삭제하시겠습니까?', [btn]);
+    const okBtn = new AlertButton('확인', () => this.event.emit({ event: 'delete', value: id }));
+    const cancleBtn = new AlertButton('취소', () => { });
+    const alert = new Alert('삭제 확인', '정말로 알람을 삭제하시겠습니까?', [okBtn, cancleBtn]);
     this.alertService.setAlert(alert);
   }
 
