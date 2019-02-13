@@ -6,6 +6,7 @@ import { ToastService } from '../service/toast.service';
 import * as cron from 'cron';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Router } from '@angular/router';
+import cronstrue from 'cronstrue';
 
 @Component({
   selector: 'list',
@@ -37,7 +38,8 @@ export class ListPage implements OnInit {
       querySnapshot.forEach(document => {
         const data = document.data() as Alarm;
         const id = document.id;
-        temp.push(new Alarm(id, data.userMail, data.icon, data.title, data.desc, data.frequency, data.enable));
+        const frequency = cronstrue.toString(data.frequency);
+        temp.push(new Alarm(id, data.userMail, data.icon, data.title, data.desc, frequency, data.enable));
       });
       this.alarms = temp;
       if (this.alarms.length == 0) {

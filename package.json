@@ -45,6 +45,7 @@
     "core-js": "^2.5.4",
     "cron": "^1.6.0",
     "cron-editor": "^2.0.0-beta",
+    "cronstrue": "^1.61.0",
     "firebase": "^5.8.0",
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
