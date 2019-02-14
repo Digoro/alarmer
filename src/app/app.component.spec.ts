@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 describe('AppComponent', () => {
 
@@ -24,7 +25,8 @@ describe('AppComponent', () => {
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
-      ],
+        BackgroundMode
+      ]
     }).compileComponents();
   }));
 
