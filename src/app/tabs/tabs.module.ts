@@ -17,7 +17,6 @@ import { CronEditorModule } from 'ngx-cron-editor';
     ReactiveFormsModule,
     IonicModule,
     CommonModule,
-    FormsModule,
     TabsPageRoutingModule,
     CronEditorModule
   ],
