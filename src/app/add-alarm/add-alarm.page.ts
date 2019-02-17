@@ -13,8 +13,9 @@ import { ToastService } from '../service/toast.service';
   styleUrls: ['./add-alarm.page.scss']
 })
 export class AddAlarmPage implements OnInit {
+  icons = ["md-add", "add-circle"];
   formGroup: FormGroup;
-  validators = Validators.compose([Validators.required, Validators.maxLength(50)])
+  validators = Validators.compose([Validators.required, Validators.maxLength(50)]);
 
   public cronExpression = '4 3 2 12 1/1 ? *';
   public isCronDisabled = false;
@@ -49,9 +50,14 @@ export class AddAlarmPage implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
+      icon: new FormControl('', this.validators),
       title: new FormControl('', this.validators),
       desc: new FormControl('', this.validators)
     })
+  }
+
+  getIconPath(icon: string) {
+    return `assets/icon/${icon}`;
   }
 
   submit() {

@@ -9,12 +9,32 @@
     <form [formGroup]="formGroup" (ngSubmit)="submit()">
       <ion-list>
         <ion-item>
-          <ion-label position="stacked" color="{{ formGroup.controls['title'].errors && formGroup.controls['title'].dirty ? 'danger' : 'primary' }}">제목</ion-label>
+          <ion-label position="stacked"
+            color="{{ formGroup.controls['icon'].errors && formGroup.controls['icon'].dirty ? 'danger' : 'primary' }}">
+            아이콘</ion-label>
+          <select placeholder="아이콘 선택">
+            <option [value]="icon" *ngFor="let icon of icons">{{icon}}</option>
+          </select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked"
+            color="{{ formGroup.controls['desc'].errors && formGroup.controls['desc'].dirty ? 'danger' : 'primary' }}">
+            설명</ion-label>
+          <ion-input formControlName="desc"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked"
+            color="{{ formGroup.controls['title'].errors && formGroup.controls['title'].dirty ? 'danger' : 'primary' }}">
+            제목</ion-label>
           <ion-input formControlName="title"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="stacked" color="{{ formGroup.controls['desc'].errors && formGroup.controls['desc'].dirty ? 'danger' : 'primary' }}">설명</ion-label>
+          <ion-label position="stacked"
+            color="{{ formGroup.controls['desc'].errors && formGroup.controls['desc'].dirty ? 'danger' : 'primary' }}">
+            설명</ion-label>
           <ion-input formControlName="desc"></ion-input>
         </ion-item>
 
