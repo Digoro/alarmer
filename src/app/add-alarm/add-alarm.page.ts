@@ -13,7 +13,7 @@ import { ToastService } from '../service/toast.service';
   styleUrls: ['./add-alarm.page.scss']
 })
 export class AddAlarmPage implements OnInit {
-  icons = ["md-add", "add-circle"];
+  icons = [];
   formGroup: FormGroup;
   validators = Validators.compose([Validators.required, Validators.maxLength(50)]);
 
@@ -49,15 +49,14 @@ export class AddAlarmPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.alarmService.getIcon().subscribe(resp => {
+      this.icons = resp;
+    })
     this.formGroup = new FormGroup({
       icon: new FormControl('', this.validators),
       title: new FormControl('', this.validators),
       desc: new FormControl('', this.validators)
     })
-  }
-
-  getIconPath(icon: string) {
-    return `assets/icon/${icon}`;
   }
 
   submit() {

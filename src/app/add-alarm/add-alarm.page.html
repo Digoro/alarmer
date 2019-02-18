@@ -12,16 +12,9 @@
           <ion-label position="stacked"
             color="{{ formGroup.controls['icon'].errors && formGroup.controls['icon'].dirty ? 'danger' : 'primary' }}">
             아이콘</ion-label>
-          <select placeholder="아이콘 선택">
-            <option [value]="icon" *ngFor="let icon of icons">{{icon}}</option>
-          </select>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked"
-            color="{{ formGroup.controls['desc'].errors && formGroup.controls['desc'].dirty ? 'danger' : 'primary' }}">
-            설명</ion-label>
-          <ion-input formControlName="desc"></ion-input>
+          <ion-select placeholder="아이콘 선택" formControlName="icon">
+            <ion-select-option *ngFor="let icon of icons">{{icon}}</ion-select-option>
+          </ion-select>
         </ion-item>
 
         <ion-item>
