@@ -8,14 +8,17 @@
   <ion-content padding>
     <form [formGroup]="formGroup" (ngSubmit)="submit()">
       <ion-list>
-        <ion-item>
-          <ion-label position="stacked"
-            color="{{ formGroup.controls['icon'].errors && formGroup.controls['icon'].dirty ? 'danger' : 'primary' }}">
-            아이콘</ion-label>
-          <ion-select placeholder="아이콘 선택" formControlName="icon">
-            <ion-select-option *ngFor="let icon of icons">{{icon}}</ion-select-option>
-          </ion-select>
-        </ion-item>
+        <ion-label position="stacked"
+          color="{{ formGroup.controls['icon'].errors && formGroup.controls['icon'].dirty ? 'danger' : 'primary' }}">
+          아이콘</ion-label>
+        <ng-select [items]="icons" formControlName="icon">
+          <ng-template ng-label-tmp let-item="item">
+            <ion-icon [name]="item"></ion-icon>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item">
+            <ion-icon [name]="item"></ion-icon>
+          </ng-template>
+        </ng-select>
 
         <ion-item>
           <ion-label position="stacked"

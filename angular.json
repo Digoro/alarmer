@@ -33,6 +33,7 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@ng-select/ng-select/themes/default.theme.css",
               {
                 "input": "src/theme/variables.scss"
               },
