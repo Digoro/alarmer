@@ -10,6 +10,7 @@ import { MainPage } from '../main/main.page';
 import { AlarmCardComponent } from '../components/alarm-card/alarm-card.component';
 import { LoginComponent } from '../components/login/login.component';
 import { CronEditorModule } from 'ngx-cron-editor';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { CronEditorModule } from 'ngx-cron-editor';
     IonicModule,
     CommonModule,
     TabsPageRoutingModule,
-    CronEditorModule
+    CronEditorModule,
+    NgSelectModule
   ],
   declarations: [
     TabsPage,
