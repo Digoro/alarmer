@@ -6,6 +6,8 @@ import { Alarm } from '../model/alarm';
 import { AuthService } from '../service/auth.service';
 import { CronOptions } from 'cron-editor';
 import { ToastService } from '../service/toast.service';
+import * as cron from 'cron';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'add-alarm',
@@ -45,7 +47,8 @@ export class AddAlarmPage implements OnInit {
     private alarmService: AlarmService,
     private router: Router,
     private toastService: ToastService,
-    private authService: AuthService
+    private authService: AuthService,
+    private localNotifications: LocalNotifications
   ) { }
 
   ngOnInit() {
@@ -66,7 +69,17 @@ export class AddAlarmPage implements OnInit {
     value.enable = true;
     this.alarmService.addAlarm(value);
     this.formGroup.reset();
+    this.schedule(value);
     this.toastService.presentToast('새 알람이 등록되었습니다!');
-    this.router.navigate(['tabs/list'])
+    this.router.navigate(['tabs/list']);
+  }
+
+  schedule(alarm: Alarm) {
+    let cronJob = new cron.CronJob(alarm.frequency, () => {
+      this.localNotifications.schedule({
+        text: alarm.title,
+        led: 'FF0000'
+      });
+    }, null, true);
   }
 }
