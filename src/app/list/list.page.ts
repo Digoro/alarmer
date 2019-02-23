@@ -45,19 +45,7 @@ export class ListPage implements OnInit {
       if (this.alarms.length == 0) {
         this.toastService.presentToast('알람이 없습니다. 등록해주세요.', 'warning')
         this.router.navigate(['tabs/add']);
-      }
-      this.schedule(temp);
-    });
-  }
-
-  schedule(alarms: Alarm[]) {
-    alarms.forEach((alarm: Alarm) => {
-      new cron.CronJob(alarm.frequency, () => {
-        this.localNotifications.schedule({
-          text: alarm.title,
-          led: 'FF0000'
-        });
-      }, null, true);
+      };
     });
   }
 
